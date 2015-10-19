@@ -1,0 +1,30 @@
+<h1><a href="/#/">HWSW example</a></h1>
+<div class="container">
+    <div class="row row-centered">
+	
+		<div>
+			<h1>{{vm.topic.name}} <img ng-if="vm.showLoading" style="padding-left: 20px" ng-src="/images/loader.gif"/></h1>
+		</div>
+		
+		<form name='submitForm' ng-submit='vm.submit()'>
+			<div>Post a message</div>			
+			<textarea type="text" name='content' ng-model='vm.content' ng-keyup="$event.keyCode == 13 && $event.ctrlKey && vm.submit()" required></textarea>		
+			<input type="submit" value="Submit"/>
+		</form>
+		
+		<button type="button" class="btn btn-default" aria-label="Left Align" ng-click='vm.loadFresh()'>		
+		  Refresh <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+		</button>
+		<div ng-hide="vm.messages.length > 0">No message yet</div>
+		
+		<ul class="list-group">
+			<li ng-repeat='message in vm.messages' class='repeat-item list-group-item'>
+				<div> 
+					<div>{{message.createdAt | date:'medium'}} {{message.author}}</div>
+					<div>{{message.content}}</div>
+				</div>
+			</li>
+		</ul>
+		<input type='button' value='Load more' ng-click='vm.loadMore()' ng-show='vm.hasMore'/>
+	</div>
+</div>

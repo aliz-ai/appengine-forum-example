@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row row-centered">
+		<form name='topicForm'>
+			<div>Create a topic</div>
+			<input type="text" name='content' ng-model='vm.topicName' required/>
+			<input type="submit" value="Submit" ng-click='vm.submit()' />
+		</form>
+		<table class="table table-striped">
+		  <tr>
+			<th>Name</th>
+			<th>Author</th>
+			<th>Created at</td>
+		  </tr>
+		  <tr ng-repeat='topic in vm.topics'>
+			<td><a ng-href='/#/topic/{{topic.id}}'>{{topic.name}}</a></td>
+			<td>{{topic.author}}</td>
+			<td>{{topic.createdAt | date:'medium'}}</td>
+		  </tr>
+		</table>
+	</div>
+</div>
